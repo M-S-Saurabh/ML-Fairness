@@ -1,0 +1,82 @@
+# Tuning hyper-parameters for accuracy
+
+Fitting 3 folds for each of 56 candidates, totalling 168 fits
+[Parallel(n_jobs=5)]: Using backend LokyBackend with 5 concurrent workers.
+[Parallel(n_jobs=5)]: Done  40 tasks      | elapsed:    3.2s
+[Parallel(n_jobs=5)]: Done 168 out of 168 | elapsed:  4.1min finished
+Best parameters set found on development set:
+
+{'C': 1, 'gamma': 0.1, 'kernel': 'rbf'}
+
+Grid scores on development set:
+
+0.831 (+/-0.001) for {'C': 0.001, 'gamma': 0.001, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.001, 'gamma': 0.01, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.001, 'gamma': 0.1, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.001, 'gamma': 1, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.001, 'gamma': 10, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.001, 'gamma': 100, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.001, 'gamma': 1000, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.01, 'gamma': 0.001, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.01, 'gamma': 0.01, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.01, 'gamma': 0.1, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.01, 'gamma': 1, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.01, 'gamma': 10, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.01, 'gamma': 100, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.01, 'gamma': 1000, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.1, 'gamma': 0.001, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.1, 'gamma': 0.01, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.1, 'gamma': 0.1, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.1, 'gamma': 1, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.1, 'gamma': 10, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.1, 'gamma': 100, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.1, 'gamma': 1000, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 1, 'gamma': 0.001, 'kernel': 'rbf'}
+0.834 (+/-0.005) for {'C': 1, 'gamma': 0.01, 'kernel': 'rbf'}
+0.841 (+/-0.002) for {'C': 1, 'gamma': 0.1, 'kernel': 'rbf'}
+0.823 (+/-0.004) for {'C': 1, 'gamma': 1, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 1, 'gamma': 10, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 1, 'gamma': 100, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 1, 'gamma': 1000, 'kernel': 'rbf'}
+0.833 (+/-0.006) for {'C': 10, 'gamma': 0.001, 'kernel': 'rbf'}
+0.838 (+/-0.006) for {'C': 10, 'gamma': 0.01, 'kernel': 'rbf'}
+0.828 (+/-0.010) for {'C': 10, 'gamma': 0.1, 'kernel': 'rbf'}
+0.802 (+/-0.010) for {'C': 10, 'gamma': 1, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 10, 'gamma': 10, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 10, 'gamma': 100, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 10, 'gamma': 1000, 'kernel': 'rbf'}
+0.835 (+/-0.006) for {'C': 100, 'gamma': 0.001, 'kernel': 'rbf'}
+0.838 (+/-0.001) for {'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}
+0.800 (+/-0.012) for {'C': 100, 'gamma': 0.1, 'kernel': 'rbf'}
+0.802 (+/-0.010) for {'C': 100, 'gamma': 1, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 100, 'gamma': 10, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 100, 'gamma': 100, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 100, 'gamma': 1000, 'kernel': 'rbf'}
+0.834 (+/-0.004) for {'C': 1000, 'gamma': 0.001, 'kernel': 'rbf'}
+0.837 (+/-0.007) for {'C': 1000, 'gamma': 0.01, 'kernel': 'rbf'}
+0.785 (+/-0.017) for {'C': 1000, 'gamma': 0.1, 'kernel': 'rbf'}
+0.802 (+/-0.010) for {'C': 1000, 'gamma': 1, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 1000, 'gamma': 10, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 1000, 'gamma': 100, 'kernel': 'rbf'}
+0.809 (+/-0.003) for {'C': 1000, 'gamma': 1000, 'kernel': 'rbf'}
+0.831 (+/-0.001) for {'C': 0.001, 'kernel': 'linear'}
+0.831 (+/-0.001) for {'C': 0.01, 'kernel': 'linear'}
+0.831 (+/-0.001) for {'C': 0.1, 'kernel': 'linear'}
+0.831 (+/-0.001) for {'C': 1, 'kernel': 'linear'}
+0.831 (+/-0.001) for {'C': 10, 'kernel': 'linear'}
+0.831 (+/-0.001) for {'C': 100, 'kernel': 'linear'}
+0.831 (+/-0.001) for {'C': 1000, 'kernel': 'linear'}
+
+Detailed classification report:
+
+The model is trained on the full development set.
+The scores are computed on the full evaluation set.
+
+              precision    recall  f1-score   support
+
+           0       0.83      0.98      0.90       968
+           1       0.55      0.13      0.21       218
+
+    accuracy                           0.82      1186
+   macro avg       0.69      0.55      0.56      1186
+weighted avg       0.78      0.82      0.77      1186
