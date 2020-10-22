@@ -1,3 +1,5 @@
+SVM Result
+====================================================================================
 # Tuning hyper-parameters for accuracy
 
 Fitting 3 folds for each of 56 candidates, totalling 168 fits
@@ -80,3 +82,34 @@ The scores are computed on the full evaluation set.
     accuracy                           0.82      1186
    macro avg       0.69      0.55      0.56      1186
 weighted avg       0.78      0.82      0.77      1186
+
+
+LOGISTIC REGRESSION RESULT
+====================================================================================
+Best parameters set found on development set:
+
+{'C': 100}
+
+Grid scores on development set:
+
+0.834 (+/-0.010) for {'C': 0.001}
+0.836 (+/-0.007) for {'C': 0.01}
+0.836 (+/-0.005) for {'C': 0.1}
+0.836 (+/-0.005) for {'C': 1}
+0.836 (+/-0.006) for {'C': 10}
+0.836 (+/-0.005) for {'C': 100}
+0.836 (+/-0.005) for {'C': 1000}
+
+Detailed classification report:
+
+The model is trained on the full development set.
+The scores are computed on the full evaluation set.
+
+              precision    recall  f1-score   support
+
+           0       0.83      0.98      0.90       968
+           1       0.55      0.08      0.14       218
+
+    accuracy                           0.82      1186
+   macro avg       0.69      0.53      0.52      1186
+weighted avg       0.77      0.82      0.76      1186
