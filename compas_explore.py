@@ -89,7 +89,7 @@ def plot_fpr(columns, fpr_list, clf_name):
 
     plt.xticks(x_pos, columns)
 
-    plt.savefig("figures/{}_fpr_plot.png".format(clf_name))
+    plt.savefig("figures/{}_FPR_plot.png".format(clf_name))
 
 def fp_by_class(X_test, y_test, y_pred, columns):
     fpr_list = []
@@ -114,6 +114,8 @@ def fpr_by_group(classifier, params):
     columns = ['African-American', 'Asian', 'Caucasian', 'Hispanic', 'Native American', 'Other']
     fpr_list, sample_counts = fp_by_class(X_test, y_test, y_pred, columns)
 
+    print("\nFPR results for", classifier.__name__)
+    print("----------------------------------")
     for col, count, fpr in zip(columns, sample_counts, fpr_list):
         print("{}:{:.2f} in {} samples".format(col, fpr, count))
     plot_fpr(columns, fpr_list, classifier.__name__)
