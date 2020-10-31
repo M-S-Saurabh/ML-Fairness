@@ -77,22 +77,32 @@ def explore_algorithm(algo, tuned_parameters, scores = ['accuracy']):
         print(classification_report(y_true, y_pred))
         print()
 
-def plot_fpr(columns, fpr_list, clf_name):
+def plot_group_results(columns, values, sample_counts, clf_name, 
+                metricname=None, title=None,
+                metricabbrev=None, xlabel='Race', color='green'):
+    if metricabbrev is None: metricabbrev = metricname
+    print("-----------------------------------------------------")
+    print(" {} results for {}".format(metricname, clf_name))
+    print("-----------------------------------------------------")
+    for col, count, val in zip(columns, sample_counts, values):
+        print("{}:{:.2f} in {} samples".format(col, val, count))
+
+    plt.figure()
     plt.style.use('ggplot')
-
     x_pos = [i for i, _ in enumerate(columns)]
-
-    plt.bar(x_pos, fpr_list, color='green')
-    plt.xlabel("Race")
-    plt.ylabel("False Positive Rate")
-    plt.title("FPR variation by race")
-
+    plt.bar(x_pos, values, color=color)
+    plt.xlabel(xlabel)
+    plt.ylabel(metricname)
+    if title is None:
+        plt.title("{} variation by race".format(metricabbrev, xlabel))
+    else:
+        plt.title(title)
     plt.xticks(x_pos, columns)
+    plt.savefig("figures/{}_{}_plot.png".format(metricabbrev, clf_name))
 
-    plt.savefig("figures/{}_FPR_plot.png".format(clf_name))
-
-def fp_by_class(X_test, y_test, y_pred, columns):
+def fptp_by_class(X_test, y_test, y_pred, columns):
     fpr_list = []
+    tpr_list = []
     sample_counts = []
     for val in columns:
         # For each class
@@ -100,29 +110,52 @@ def fp_by_class(X_test, y_test, y_pred, columns):
         y_test_col = y_test[class_indices]
         y_pred_col = y_pred[class_indices]
         fp = np.count_nonzero((y_pred_col == 1)  & (y_test_col == 0))
-        tn = np.count_nonzero(y_test_col == 0)
-        fpr = fp / tn
+        tn = np.count_nonzero((y_pred_col == 0)  & (y_test_col == 0))
+        tp = np.count_nonzero((y_pred_col == 1)  & (y_test_col == 1))
+        fn = np.count_nonzero((y_pred_col == 0)  & (y_test_col == 1))
+        fpr = fp / (fp+tn) if (fp+tn > 0) else 0
+        tpr = tp / (tp+fn) if (tp+fn > 0) else 0
         fpr_list.append(fpr)
+        tpr_list.append(tpr)
         sample_counts.append(len(y_pred_col))
-    return fpr_list, sample_counts
+    return fpr_list, tpr_list, sample_counts
 
-def fpr_by_group(classifier, params):
+def demographic_parity(X_test, y_test, y_pred, columns):
+    group_probs = []
+    sample_counts = []
+    for val in columns:
+        # For each class
+        class_indices = (X_test[val] == 1)
+        y_test_col = y_test[class_indices]
+        y_pred_col = y_pred[class_indices]
+        nobail_count = np.count_nonzero(y_pred_col == 1)
+        nobail_prob = nobail_count / len(y_pred_col)
+        group_probs.append(nobail_prob)
+        sample_counts.append(len(y_pred_col))
+    return group_probs, sample_counts
+
+def metrics_by_group(classifier, params):
     clf = classifier(**params)
     clf.fit(X_train, y_train)
+    print()
     print(clf)
     y_pred = clf.predict(X_test)
     columns = ['African-American', 'Asian', 'Caucasian', 'Hispanic', 'Native American', 'Other']
-    fpr_list, sample_counts = fp_by_class(X_test, y_test, y_pred, columns)
 
-    print("\nFPR results for", classifier.__name__)
-    print("----------------------------------")
-    for col, count, fpr in zip(columns, sample_counts, fpr_list):
-        print("{}:{:.2f} in {} samples".format(col, fpr, count))
-    plot_fpr(columns, fpr_list, classifier.__name__)
+    # Demographic parity
+    group_probs, sample_counts = demographic_parity(X_test, y_test, y_pred, columns)
+    plot_group_results( columns, group_probs, sample_counts, classifier.__name__, 
+                        metricname='Bail denial probability', metricabbrev='Parity',
+                        title='Demographic Parity', color='red')
+    # FPR and TPR (equal opportunity)
+    fpr_list, tpr_list, sample_counts = fptp_by_class(X_test, y_test, y_pred, columns)
+    plot_group_results( columns, fpr_list, sample_counts, classifier.__name__,
+                        metricabbrev='FPR', metricname='False positive rate', color='green')
+    plot_group_results( columns, tpr_list, sample_counts, classifier.__name__, 
+                        metricabbrev='TPR', metricname='True positive rate', color='blue')
 
-fpr_by_group(LogisticRegression, {'C':100})
-fpr_by_group(SVC, {'C': 1, 'gamma': 0.1, 'kernel': 'rbf'})
-
+metrics_by_group(LogisticRegression, {'C':100})
+metrics_by_group(SVC, {'C': 1, 'gamma': 0.1, 'kernel': 'rbf'})
 
 # SVM_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-2, 0.1, 1, 10, 100, 1000], 'C': [1e-3, 1e-2, 0.1, 1, 10, 100, 1000]},
 #                         {'kernel': ['linear'], 'C': [1e-3, 1e-2, 0.1, 1, 10, 100, 1000]}]
