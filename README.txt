@@ -39,3 +39,19 @@ C = 1 is the advantaged class. TPR should be equalized.
 Varying threshold over the score instead of direct prediction.
 
 --------------------------------------------------------------------------------------------------------------------------------
+
+Progress report - Plan
+-----------------------
+1. Introduction from proposal (1 para)
+2. Datasets we are using (1 para)
+3. What Bias they have examples: (mention discrimination bias, gender bias) (1 para)
+4. False positive rate, demographic parity, equality of opportunity explain (1 para)
+   Show metrics in dataset (FPR, Parity, TPR graphs)
+5. Mitigating threshold: 3 methods explain (Threshold- Saurabh)
+6. Tried so far: Threshold-based: explain method detailed, show graph (Saurabh)
+7. Discuss results.
+8. Future work: say we'll do the other 2 methods.
+9. References
+
+
+
