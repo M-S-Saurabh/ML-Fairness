@@ -4,7 +4,7 @@ import pandas as pd
 
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, accuracy_score
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 
@@ -134,12 +134,24 @@ def demographic_parity(X_test, y_test, y_pred, columns):
         sample_counts.append(len(y_pred_col))
     return group_probs, sample_counts
 
-def metrics_by_group(classifier, params):
+def threshold_predict(model, X, thresholds):
+    y_pred = np.zeros(X.shape[0])
+    for column, threshold in thresholds.items():
+        indices = (X[column] == 1)
+        if threshold is None: threshold = 0.5
+        preds = (model.predict_proba(X[indices])[:,1] >= threshold).astype(int)
+        np.put( y_pred, np.where(indices), preds)
+    return y_pred
+
+def metrics_by_group(classifier, params, thresholds=None):
     clf = classifier(**params)
     clf.fit(X_train, y_train)
     print()
     print(clf)
-    y_pred = clf.predict(X_test)
+    if thresholds is None:
+        y_pred = clf.predict(X_test)
+    else:
+        y_pred = threshold_predict(clf, X_test, thresholds)
     columns = ['African-American', 'Asian', 'Caucasian', 'Hispanic', 'Native American', 'Other']
 
     # Demographic parity
@@ -154,8 +166,11 @@ def metrics_by_group(classifier, params):
     plot_group_results( columns, tpr_list, sample_counts, classifier.__name__, 
                         metricabbrev='TPR', metricname='True positive rate', color='blue')
 
-metrics_by_group(LogisticRegression, {'C':100})
-metrics_by_group(SVC, {'C': 1, 'gamma': 0.1, 'kernel': 'rbf'})
+    print(classification_report(y_test, y_pred))
+
+if __name__ == "__main__":
+    metrics_by_group(LogisticRegression, {'C':100})
+    metrics_by_group(SVC, {'C': 1, 'gamma': 0.1, 'kernel': 'rbf'})
 
 # SVM_parameters = [{'kernel': ['rbf'], 'gamma': [1e-3, 1e-2, 0.1, 1, 10, 100, 1000], 'C': [1e-3, 1e-2, 0.1, 1, 10, 100, 1000]},
 #                         {'kernel': ['linear'], 'C': [1e-3, 1e-2, 0.1, 1, 10, 100, 1000]}]
