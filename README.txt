@@ -53,5 +53,22 @@ Progress report - Plan
 8. Future work: say we'll do the other 2 methods.
 9. References
 
+--------------------------------------------------------------------------------------------------------------------------------
+
+Final report - Plan
+-----------------------
+1. Introduction from proposal (1 para)
+2. Datasets we are using (Stats, Pre-processing, Numbers)
+3. False positive rate, demographic parity, equality of opportunity explain (1 para)
+   Show metrics in dataset (FPR, Parity, TPR graphs)
+4. Why Demographic parity is bad, Equality of opportunity
+5. Describing each Mitigating method - Pseudocode
+6. Graphs - Lot of graphs
+7. Discussion: Comparing results, drawing some unintuitive connections 
+   (AD does something which is not covered in threshold based)
+   (How their time complexity compares)
+   (Applicability to different models)
+   
+
 
 
