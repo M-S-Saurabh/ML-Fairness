@@ -71,5 +71,5 @@ def plot_metrics(metrics_before, metrics_after,
     fig.subplots_adjust(bottom=0.2)
     title = 'Impact of {} on {} dataset - {}'.format(mitigation, dataset, sensitive_attr)
     fig.suptitle(title, y=0.08)
-    fig.savefig('figures/'+title+'.png')
+    fig.savefig('./figures/'+title+'.png')
     plt.show()

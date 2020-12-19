@@ -1,0 +1,9 @@
+tqdm==4.46.0
+matplotlib==3.2.1
+tensorflow_gpu==1.15.0
+numpy==1.18.5+mkl
+pandas==1.0.3
+aif360==0.3.0
+ipython==7.19.0
+scikit_learn==0.23.2
+seaborn==0.11.0
