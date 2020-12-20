@@ -33,15 +33,7 @@ get_ipython().run_line_magic('cd', 'Downloads')
 
 get_ipython().system('pip install sklego')
 
-
-# In[3]:
-
-
 get_ipython().run_cell_magic('', '', '# sensitive attribute: gender(male/female) or gender(male/female) and race(white/non-white)')
-
-
-# In[4]:
-
 
 column_names = ['age', 'workclass', 'fnlwgt', 'education', 'educational-num','marital-status', 'occupation', 'relationship', 'race', 'gender','capital-gain', 'capital-loss', 'hours-per-week', 'native-country','income']
 
@@ -82,7 +74,6 @@ adult[(adult['gender'] == "Female") & (adult['income'] == '<=50K')].count()
 print(adult.workclass.unique().tolist())
 
 
-# In[8]:
 
 
 print(adult.gender.unique())
@@ -654,8 +645,26 @@ ax.bar(xlabel,tpr,color=['blue'])
 plt.show()
 # plt.bar([0,1], fpr, )
 
+# References: 
+# https://github.com/AissatouPaye/Fairness-in-Classification-and-Representation-Learning
+# https://arxiv.org/pdf/2001.09784.pdf
+# https://rdrr.io/cran/dslabs/man/admissions.html
+# https://developers.google.com/machine-learning/crash-course/fairness/evaluating-for-bias
+# https://towardsdatascience.com/a-tutorial-on-fairness-in-machine-learning-3ff8ba1040cb
+# https://fairmlbook.org/code/adult.html
+# https://github.com/Trusted-AI/AIF360/blob/master/aif360/datasets/adult_dataset.py
+# https://arxiv.org/pdf/1908.09635.pdf
+# https://arxiv.org/pdf/1809.09245.pdf
+# https://fairmlclass.github.io/#sources
+# https://arxiv.org/pdf/1908.09635.pdf
+# http://cs.carleton.edu/cs_comps/1920/fairness/index.php
+# https://github.com/montaserFath
+# https://closedloop.ai/a-new-metric-for-quantifying-fairness-in-healthcare/
+# https://github.com/rehmanzafar/dlime_experiments
+# https://fairmlbook.org/pdf/fairmlbook.pdf
+# https://fairmlclass.github.io/
+# http://www.cs.cornell.edu/~hubert/files/publications/silva_chi.pdf
 
-# In[ ]:
 
 
 
