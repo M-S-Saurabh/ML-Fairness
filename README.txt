@@ -34,7 +34,7 @@ explore_credit.py:
 adult_explore.py:
     - Reads the pre-prcoessed data shared in data folder (adult.zip need to uncompress it)
     - Explores the adult dataset by running both Logistic Regression and SVC. 
-    - Plots graph for some features/attributes for visual analysis
+    - Plots graphs for some features/attributes for visual analysis
     - Plots the graphs for FPR, TPR, Demographic parity to show the bias
     
 adult_adversarial_debiasing.py:
