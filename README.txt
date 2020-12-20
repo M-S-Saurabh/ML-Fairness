@@ -30,3 +30,19 @@ explore_credit.py:
     - Python file which runs 2-layer neural network without de-biasing and with de-biasing on credit dataset
     - Code uses Tensorflow
     - Plots the comparison graphs between before and after de-biasing
+
+adult_explore.py:
+    - Reads the pre-prcoessed data shared in data folder (adult.zip need to uncompress it)
+    - Explores the adult dataset by running both Logistic Regression and SVC. 
+    - Plots graph for some features/attributes for visual analysis
+    - Plots the graphs for FPR, TPR, Demographic parity to show the bias
+    
+adult_adversarial_debiasing.py:
+    - Python file which runs 2-layer neural network without de-biasing and with de-biasing on Adult dataset
+    - Code uses Tensorflow-1.5
+    - prints results before and after de-biasing
+    - generates comparison graphs
+    
+adult_reweighing_preproc.py:
+    - Python file which runs re-weighing on logistic regrssion model for Adult dataset
+    - Displays comparison graphs for various metrics (DP, EO, Disparate Impact)
